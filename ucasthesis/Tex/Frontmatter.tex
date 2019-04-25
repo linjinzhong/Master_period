@@ -1,0 +1,40 @@
+%---------------------------------------------------------------------------%
+%->> Frontmatter
+%---------------------------------------------------------------------------%
+%-
+%-> 生成封面
+%-
+\maketitle% 生成中文封面
+\MAKETITLE% 生成英文封面
+%-
+%-> 作者声明
+%-
+\makedeclaration% 生成声明页
+%-
+%-> 中文摘要
+%-
+\intobmk\chapter*{摘\quad 要}% 显示在书签但不显示在目录
+\setcounter{page}{1}% 开始页码
+\pagenumbering{Roman}% 页码符号
+
+随着信息技术和移动网络技术的快速发展，人们能够越来越方便地通过网络在社交媒体上获取信息和交换意，极大地促进了用户生成式内容数据的产生和传播。但是，大规模的网络数据使得用户难以从中快速有效地提取当前的热点话题以及感兴趣的话题。本文主要研究面向大规模网络数据的热点话题检测研究与系统实现，基于网络话题的无监督排序的思路，提出了两种算法来加速网络话题检测。这两种算法分别针对网络话题的快速生成和网络话题的快速排序。我们在MCG-WEBV和YKS两个数据集上验证我们算法的有效性和高效性。
+
+针对网络话题的快速生成，我们发现网络话题在相似度空间与L\'evy Walks存在统计意义上的相似性。所以，我们提出了一种无模型且无需复杂参数优化的简单算法来模拟网络话题的L\'evy Walks特性。该算法基于$k$近邻相似度图；首先计算每个网页属于话题中心网页的概率，并按概率对网页进行排序；然后贪心地从中找出小规模的种子网页作为初始的种子话题；接着定义网页与种子话题的相似度度量方式，将每个网页分配给最相似的几个种子话题；最后按照平均相似度进行层级阈值截断来生成多粒度网络话题。通过简单的对网页进行计算和分配，我们找到了一种新的组织网络话题的方法，大大提高网络话题的生成效率，为处理大规模网络数据迈进一步。
+
+针对网络话题的快速排序，由于泊松去卷积算法需要迭代利用所有数据来更新重构一个与相似度矩阵同等规模的矩阵，使其无法高效地处理大规模网络数据。而且由于该算法使用期望最大化算法来优化求解，导致无法使用随机优化中的随机梯度下降算法来实现可扩展性。我们发现优化最小化原则是期望最大化算法的泛化版本，所以我们将随机优化最小化算法应用到网络话题检测中，提出随机泊松去卷积算法。通过迭代地利用小批量样本来更新目标函数的代理函数，再最小化代理函数来更新求解。我们的算法减少了物理内存的需求，同时提高了计算效率，能更好地处理大规模网络数据。最后，基于多核系统，我们还实现了该算法的异步并行版本。
+
+
+\keywords{网络话题，检测，可扩展性，大规模网络数据，随机泊松去卷积算法}% 中文关键词
+%-
+%-> 英文摘要
+%-
+\intobmk\chapter*{Abstract}% 显示在书签但不显示在目录
+
+With the rapid development of information technology and mobile network technology, it is becoming more and more convenient for people to access information and exchange opinions on social media through the Internet, which greatly promotes the generation and dissemination of user-generated content data. However, large-scale web data makes it difficult for users to quickly and efficiently extract current hot topics and attractive topics. This paper mainly studies hot topic detection from large-scale web data. Based on the idea of unsupervised ranking of web topics, we propose two algorithms to speed up web topic detection. These two algorithms are aimed at the rapid generation and the quick sorting of web topics. We validate the effectiveness and efficiency of our algorithms on the MCG-WEBV and YKS data sets.
+
+For the rapid generation of web topics, we find the statistically similar feature between web topics and L\'evy Walks in the similarity space. Therefore, we propose a simple algorithm without model construction and complex parameter optimization to simulate the L\'evy Walks feature of web topics. The algorithm is based on the $k$ neighborhood similarity graph. Firstly, we calculate the probability that each web page belongs to the center of topic, and sort the web pages by probability； Then, we greedily find the small-scale seed web pages, which used as the initial seed topics; After that, we define the similarity measurement method of the web page and the seed topic, and assign each web page to some most similar seed topics; Finally, the hierarchical threshold is used to truncate the seed topic to generate the multi-granularity web topics according to the average similarity. By simply calculating and distributing web pages, we have found a new way to organize web topics, which greatly improve the efficiency of web topic generation and make a solid move forward in processing large-scale web data.
+
+For the quick sorting of web topics, since the Poisson Deconvolution algorithm needs to iteratively utilize all data to update and reconstruct a matrix of the same size as the similarity matrix, it cannot efficiently process large-scale web data. Moreover, since the algorithm uses the Expectation Maximization algorithm to optimize the solution, the Stochastic Gradient Descent algorithm in stochastic optimization cannot be used to achieve the scalability requirement. We find that the Majorization-minimization is the generalization of Expectation Maximization algorithm, so we apply the Stochastic Majorization-minimization algorithm to the web topic detection, and propose a Stochastic Poisson Deconvolution algorithm. The algorithm iteratively updates the surrogate function of objective function by utilizing small batch samples, and then minimizing the surrogate function. Our algorithm reduce the requirement of the physical memory while improving computational efficiency, and can better handling large-scale web data. Finally, based on the multi-core system, we also implemented an asynchronous parallel version of the algorithm.
+
+\KEYWORDS{web topic, detection, scalable, large-scale web data, stochastic poisson deconvolution}% 英文关键词
+%---------------------------------------------------------------------------%
